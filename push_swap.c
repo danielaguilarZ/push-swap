@@ -12,9 +12,7 @@
 
 #include "push_swap.h"
 
-Node *top;
-
-top = NULL;
+Node *top = NULL;
 
 int	checker_duplicated(int value)
 {
@@ -38,7 +36,7 @@ void create_stack_a(int nb)
     
     if (checker_duplicated(nb) == 1)
     {
-        printf("Error: Number already on the stack\n");
+        printf("Error: Numbers duplicated detected\n");
         exit(EXIT_FAILURE);
     }
     newNode = (Node *)malloc(sizeof(Node));
@@ -51,4 +49,31 @@ void create_stack_a(int nb)
     newNode->data = nb;
     newNode->next = top;
     top = newNode;
+}
+
+int	main(int argc, char *argv[])
+{
+	int		i;
+	int		nb;
+	Node	*current;
+
+	if (argc > 1)
+	{
+		i = argc - 1;
+		while (i > 0)
+		{
+			nb = atoi(argv[i]);
+			create_stack_a(nb);
+			i--;
+		}
+	}
+	current = top;
+	while (current != NULL)
+	{
+		printf("%d\n", current->data);
+		current = current->next;
+	}
+	printf("_  _\na  b");
+	printf("\n");
+	return (0);
 }
