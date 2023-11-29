@@ -1,66 +1,54 @@
-#include <stdio.h>
-#include <stdlib.h> // Para usar atoi()
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/29 17:16:07 by daguilar          #+#    #+#             */
+/*   Updated: 2023/11/29 18:25:52 by daguilar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// Estructura del nodo para la lista enlazada
-typedef struct Node {
-    int data;
-    struct Node *next;
-} Node;
+#include "push_swap.h"
 
-Node *top = NULL; // Puntero al tope del stack
+Node *top;
 
-// Función para verificar si el stack está vacío
-int isEmpty() {
-    return top == NULL;
+top = NULL;
+
+int	checker_duplicated(int value)
+{
+	Node	*current;
+
+	current = top;
+	while (current != NULL)
+	{
+		if (current->data == value)
+		{
+			return (1);
+		}
+		current = current->next;
+	}
+	return (0);
 }
 
-// Función para verificar si un número ya está en el stack
-int isDuplicate(int value) {
-    Node *current = top;
-    while (current != NULL) {
-        if (current->data == value) {
-            return 1;
-        }
-        current = current->next;
+void create_stack_a(int nb)
+{
+    Node *newNode;
+    
+    if (checker_duplicated(nb) == 1)
+    {
+        printf("Error: Number already on the stack\n");
+        exit(EXIT_FAILURE);
     }
-    return 0;
-}
-
-// Función para agregar un elemento al stack
-void pushAtFirst(int value) {
-    if (isDuplicate(value)) {
-        printf("El número %d ya está en el stack. No se permiten duplicados.\n", value);
-        return;
+    newNode = (Node *)malloc(sizeof(Node));
+    if (!newNode)
+    {
+        printf("Error: Memory could not be allocated");
+        exit(EXIT_FAILURE);
     }
 
-    Node *newNode = (Node *)malloc(sizeof(Node));
-    if (newNode == NULL) {
-        printf("Error: No se pudo asignar memoria para el nuevo elemento.\n");
-        return;
-    }
-
-    newNode->data = value;
+    newNode->data = nb;
     newNode->next = top;
     top = newNode;
-}
-
-int main(int argc, char *argv[]) {
-    if (argc > 1) {
-        int i = argc - 1;
-        while (i > 0) {
-            int num = atoi(argv[i]); // Convertir el argumento a número
-            pushAtFirst(num); // Agregar el número al stack
-            i--;
-        }
-    }
-
-    printf("Stack actual: ");
-    Node *current = top;
-    while (current != NULL) {
-        printf("%d ", current->data); // Imprimir elementos del stack
-        current = current->next;
-    }
-    printf("\n");
-
-    return 0;
 }
