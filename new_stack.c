@@ -1,39 +1,80 @@
 #include "push_swap.h"
 
-t_stack *ft_new_stack(int content)
-{
-    t_stack *new;
 
-    new = (t_stack *)malloc(sizeof (t_stack));
-    if(!new)
-        exit(1);
-    new->nb = content;
-    new->next = NULL;
-    return (new);
+static int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+	{
+		return (1);
+	}
+	return (0);
 }
 
-void ft_add(t_stack **stack, int nb)
+static long	ft_atol(const char *s) //Define a function that converts every string into a long value
 {
-    t_stack *newNode = ft_new_stack(nb);
+	long	result;
+	int		sign;
 
-    if (newNode)
+	result = 0;
+	sign = 1; 
+	while (*s == ' ' || *s == '\t' || *s == '\n' || \
+			*s == '\r' || *s == '\f' || *s == '\v')
+		s++;
+	if (*s == '-' || *s == '+')
+	{
+		if (*s == '-')
+			sign = -1;
+		s++;
+	}
+	while (ft_isdigit(*s))
+		result = result * 10 + (*s++ - '0');
+	return (result * sign);
+}
+
+static void ft_add_node(t_stack **stack, int n)
+{
+    t_stack *node;
+    t_stack *last_node;
+
+    if(!stack)
+        return;
+    node = malloc(sizeof(t_stack));
+    if (!node)
+        return;
+    node->next = NULL;
+    node->nb = n;
+    if(!(*stack))
     {
-        t_stack *temp = *stack;
-
-        if (temp)
-        {
-            while (temp->next != NULL)
-                temp = temp->next;
-
-            temp->next = newNode;
-            newNode->prev = temp;
-        }
-        else
-            *stack = newNode;
+        *stack = node;
+        node->prev = NULL;
+    }
+    else
+    {
+        last_node = ft_stack_last(*stack);
+        last_node->next = node;
+        node->prev = last_node;
     }
 }
 
+void ft_create_stack_a(t_stack **A, char **argv)
+{
+    long n;
+    int i; 
 
+    i = 0;
+    while (argv[i])
+    {
+        if(ft_e_syntax(argv[i]))
+            ft_free_errors(A);
+        n = ft_atol(argv[i]);
+        if(n > INT_MAX || n < INT_MIN)
+            ft_free_errors(A);
+        if(ft_e_duplicated(*A, (int)n))
+            ft_free_errors(A);
+        ft_add_node(A, (int)n);
+        i++;
+    }
+}
 
 void ft_print_stacks(t_stack *A, t_stack *B)
 {
@@ -63,130 +104,21 @@ void ft_print_stacks(t_stack *A, t_stack *B)
     }
 }
 
-// void ft_swap_a(t_stack **stack)
+// void ft_print_stacks(const t_stack *A, const t_stack *B)
 // {
-//     int temp;
-//     t_stack *first;
-//     t_stack *second;
-
-//     if(*stack && (*stack)->next)
+//     printf("\nStack A:\n");
+//     const t_stack *tempA = A;
+//     while (tempA != NULL)
 //     {
-//         first = *stack;
-//         second = (*stack)->next;
+//         printf("%ld\n", tempA->nb);
+//         tempA = tempA->next;
 //     }
-//     temp = first->nb;
-//     first->nb = second->nb;
-//     second->nb= temp;
 
+//     printf("\nStack B:\n");
+//     const t_stack *tempB = B;
+//     while (tempB != NULL)
+//     {
+//         printf("%ld\n", tempB->nb);
+//         tempB = tempB->next;
+//     }
 // }
-
-void ft_swap_a(t_stack **A)
-{
-    int temp;
-    t_stack *first;
-    t_stack *second;
-
-    if(*A && (*A)->next)
-    {
-        first = *A;
-        second = (*A)->next;
-    }
-    temp = first->nb;
-    first->nb = second->nb;
-    second->nb= temp;
-}
-
-void ft_push_b(t_stack **A, t_stack **B)
-{
-    if (*A != NULL)
-    {
-        t_stack *temp;
-
-        temp = *A;
-        *A = (*A)->next;
-        temp->next = *B;
-        *B = temp;
-    }
-    else
-        printf("Stack A: empty\n");
-}
-
-void ft_push_a(t_stack **B, t_stack **A)
-{
-    if (*B != NULL)
-    {
-        t_stack *temp;
-
-        temp = *B;
-        *B = (*B)->next;
-void ft_push_b(t_stack **A, t_stack **B)
-    }
-    else
-        printf("Stack B: empty\n");
-}
-
-void ft_swap_ab(t_stack **A , t_stack **B)
-{
-    int tempA;
-    int tempB;
-    t_stack *first;
-    t_stack *second;
-
-    if(*A && (*A)->next)
-    {
-        first = *A;
-        second = (*A)->next;
-    }
-    tempA= first->nb;
-    first->nb = second->nb;
-    second->nb= tempA;
-
-    if(*B && (*B)->next)
-    {
-        first = *B;
-        second = (*B)->next;
-    }
-    tempB = first->nb;
-    first->nb = second->nb;
-    second->nb= tempB;
-}
-
-
-int main(int argc, char **argv)
-{
-    t_stack *A;
-    t_stack *B;
-    int i;
-    int nb;
-
-    i = 1;
-    A = NULL;
-    B = NULL;
-
-    if (argc < 2)
-        exit(1);
-    while (i < argc)
-    {
-        nb = atoi(argv[i]);
-        ft_add(&A, nb);
-        i++;
-    }
-    
-    ft_print_stacks(A, B);
-
-    ft_push_b(&A, &B);
-
-    ft_print_stacks(A, B);
-
-    ft_push_b(&A, &B);
-
-    ft_print_stacks(A, B);
-
-    ft_swap_ab(&A, &B);
-
-    ft_print_stacks(A, B);
-
-    ft_push_a(&B, &A);
-
-    ft_print_stacks(A, B);
-}
