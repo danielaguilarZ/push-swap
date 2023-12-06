@@ -34,6 +34,7 @@ void ft_free_stack(t_stack **stack)
 
 	if(!stack)
 		return;
+	current = *stack;
 	while (current)
 	{
 		tmp = current->next;

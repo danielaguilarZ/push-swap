@@ -16,24 +16,27 @@ int main(int argc, char **argv)
 {
     t_stack *A;
     t_stack *B;
-    int i;
-    int nb;
 
-    i = 1;
     A = NULL;
     B = NULL;
-
+    if (argc == 1 || (argc == 2 && !argv[1][0]))
+        return (1);
+    else if (argc == 2)
+        argv = ft_split_ps(argv[1], ' ');
     ft_create_stack_a(&A, argv + 1);
-
     ft_print_stacks(A, B);
     printf("\n");
-
-    ft_ss(&A, &B, true);
-    ft_pb(&A, &B, true);
-    ft_pb(&A, &B, true);
-    ft_pb(&A, &B, true);
-    ft_ss(&A, &B, true);
-
+    if (ft_stack_sorted(A) == false)
+    {
+        if (ft_stack_size(A) == 2)
+            ft_sa(&A, true);
+        else if (ft_stack_size(A) == 3)
+            ft_sort_three(&A);
+        else
+            ft_sort_all(&A, &B);
+    }
+    printf("\n");
     ft_print_stacks(A, B);
 
+    ft_free_stack(&A);
 }

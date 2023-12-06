@@ -22,6 +22,19 @@ int	ft_stack_size(t_stack *stack)
 	return (i);
 }
 
+bool ft_stack_sorted(t_stack *stack)
+{
+	if(!stack)
+		return(1);
+	while(stack->next)
+	{
+		if(stack->nb > stack->next->nb)
+			return(false);
+		stack = stack->next;
+	}
+
+	return(true);
+}
 
 t_stack	*ft_stack_min(t_stack *stack)
 {
@@ -53,7 +66,7 @@ t_stack	*ft_stack_max(t_stack *stack)
 	max = LONG_MIN;
 	while(stack)
 	{
-		if (stack->nb < max)
+		if (stack->nb > max)
 		{
 			max = stack->nb;
 			max_node = stack;

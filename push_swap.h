@@ -64,5 +64,15 @@ int ft_e_duplicated(t_stack *A, int n);
 void ft_free_stack(t_stack **stack);
 void ft_free_errors(t_stack **A);
 
+bool ft_stack_sorted(t_stack *stack);
+void ft_sort_three(t_stack **A);
+
+size_t	ft_strlen( char *str);
+char	*ft_strchr( char *s, int c);
+
+char	**ft_split_ps(char *s, char c);
+
+void ft_sort_all(t_stack **A, t_stack **B);
+
 
 #endif
