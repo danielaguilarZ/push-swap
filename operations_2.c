@@ -37,3 +37,11 @@ void	ft_rr(t_stack **A, t_stack **B, bool print)
     if(print == true)
         printf("rr\n");
 }
+
+void ft_rr_both(t_stack **A, t_stack **B, t_stack *optimal_node)
+{
+    while (*B != optimal_node->target_node && *A != optimal_node)
+        ft_rr(A, B, true);
+    ft_current_index(*A);
+    ft_current_index(*B);
+}

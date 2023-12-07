@@ -25,7 +25,7 @@ typedef struct s_stack
 	long			index;
 	int					push_cost;
 	bool				above_median;
-	bool				cheapest;
+	bool				optimal;
 	struct s_stack	*target_node;
 	struct s_stack	*next;
 	struct s_stack	*prev;
@@ -44,11 +44,13 @@ void ft_rerverse_rotation(t_stack **stack);
 void ft_rra(t_stack **A, bool print);
 void ft_rrb(t_stack **B, bool print);
 void f_rrr(t_stack **A, t_stack **B, bool print);
+void ft_rrr_both(t_stack **A, t_stack **B, t_stack *optimal_node);
 
 void	ft_rotation(t_stack **stack);
 void ft_ra(t_stack **A, bool print);
 void ft_rb(t_stack **B, bool print);
 void ft_rr(t_stack **A, t_stack **B, bool print);
+void ft_rr_both(t_stack **A, t_stack **B, t_stack *optimal_node);
 
 void ft_create_stack_a(t_stack **A, char **argv);
 void ft_print_stacks(t_stack *A, t_stack *B);
@@ -73,6 +75,14 @@ char	*ft_strchr( char *s, int c);
 char	**ft_split_ps(char *s, char c);
 
 void ft_sort_all(t_stack **A, t_stack **B);
+
+void ft_ready_to_push(t_stack **stack, t_stack *top_node, char A_or_B);
+void ft_optimal(t_stack *stack);
+void  ft_current_index(t_stack *stack);
+t_stack *ft_get_optimal(t_stack *stack);
+
+void ft_nodes_A(t_stack *A, t_stack *B);
+void ft_nodes_B(t_stack *A, t_stack *B);
 
 
 #endif

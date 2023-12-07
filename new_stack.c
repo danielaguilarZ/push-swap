@@ -10,7 +10,7 @@ static int	ft_isdigit(int c)
 	return (0);
 }
 
-static long	ft_atol(const char *s) //Define a function that converts every string into a long value
+static long	ft_atol(const char *s)
 {
 	long	result;
 	int		sign;
