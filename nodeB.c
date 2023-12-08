@@ -3,10 +3,10 @@
 static void ft_set_target_b(t_stack *A, t_stack *B)
 {
     t_stack *currentA;
-    t_stack *target;
+    t_stack *target_node;
     long    best_index;
 
-    while(A)
+    while(B)
     {
         best_index = LONG_MAX;
         currentA = A;
@@ -15,14 +15,14 @@ static void ft_set_target_b(t_stack *A, t_stack *B)
             if (currentA->nb > B->nb && currentA->nb < best_index)
             {
                 best_index = currentA->nb;
-                target = currentA;
+                target_node = currentA;
             }
             currentA = currentA->next;
         }
         if(best_index == LONG_MAX)
-            B->target_node = ft_stack_max(A);
+            B->target_node = ft_stack_min(A);
         else
-            B->target_node = target;
+            B->target_node = target_node;
         B = B->next;
     }
 }

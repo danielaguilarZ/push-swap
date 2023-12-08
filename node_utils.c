@@ -33,6 +33,7 @@ t_stack *ft_get_optimal(t_stack *stack)
     }
     return (NULL);
 }
+
 void ft_optimal(t_stack *stack)
 {
     long optimal_value;
@@ -67,9 +68,9 @@ void ft_ready_to_push(t_stack **stack, t_stack *top_node, char A_or_B)
         else if (A_or_B == 'B')
         {
             if (top_node->above_median)
-				ft_rb(stack, false);
+				ft_rb(stack, true);
 			else
-				ft_rrb(stack, false);
+				ft_rrb(stack, true);
         }
     }
 }

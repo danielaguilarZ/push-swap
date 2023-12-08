@@ -41,6 +41,8 @@ static void ft_cost_push_a(t_stack *A, t_stack *B)
             A->push_cost = size_stack_a - (A->index);
         if (A->target_node->above_median)
             A->push_cost += A->target_node->index;
+        else
+            A->push_cost += size_stack_b - (A->target_node->index);
         A = A->next;
     }
 }

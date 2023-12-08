@@ -14,7 +14,7 @@ static void ft_move_a_to_b(t_stack **A, t_stack **B)
     ft_pb(A, B, true);
 }
 
-static void ft_move_b_to_a(t_stack **B, t_stack **A)
+static void ft_move_b_to_a(t_stack **A, t_stack **B)
 {
     ft_ready_to_push(A, (*B)->target_node, 'A');
     ft_pa(B, A, true);
@@ -49,7 +49,7 @@ void ft_sort_all(t_stack **A, t_stack **B)
     while (*B)
     {
         ft_nodes_B(*A, *B);
-        ft_move_b_to_a(B, A);
+        ft_move_b_to_a(A, B);
     }
     ft_current_index(*A);
     ft_min_first(A);

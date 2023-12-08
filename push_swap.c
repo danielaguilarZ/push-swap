@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     else if (argc == 2)
         argv = ft_split_ps(argv[1], ' ');
     ft_create_stack_a(&A, argv + 1);
-    ft_print_stacks(A, B);
+    // ft_print_stacks(A, B);
     printf("\n");
     if (ft_stack_sorted(A) == false)
     {
@@ -33,10 +33,10 @@ int main(int argc, char **argv)
         else if (ft_stack_size(A) == 3)
             ft_sort_three(&A);
         else
-            ft_sort_all(&A, &B);
+            ft_sort_all(&A, &B);     
     }
     printf("\n");
-    ft_print_stacks(A, B);
+    // ft_print_stacks(A, B);
 
     ft_free_stack(&A);
 }

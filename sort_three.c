@@ -12,3 +12,5 @@ void ft_sort_three(t_stack **A)
     if ((*A)->nb > (*A)->next->nb)
         ft_sa(A, true);
 }
+
+
