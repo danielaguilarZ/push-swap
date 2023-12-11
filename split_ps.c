@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_ps.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/11 17:34:04 by daguilar          #+#    #+#             */
+/*   Updated: 2023/12/11 17:49:45 by daguilar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	ft_nwords(char *s, char c)
@@ -37,21 +49,21 @@ static int	ft_sizewords(char *s, char c)
 
 static char	*ft_words(char *s, char c)
 {
-	char	*str;
-	int		i;
-    static int	cursor = 0;
+	char		*str;
+	int			i;
+	static int	cursor = 0;
 
 	i = 0;
 	str = (char *)malloc(sizeof(char) * (ft_sizewords(s, c) + 1));
 	if (!str)
 		return (NULL);
 	while (s[cursor] == c)
-        ++cursor;
+		++cursor;
 	while (s[cursor] && s[cursor] != c)
 	{
 		str[i] = s[cursor];
 		i++;
-        cursor++;
+		cursor++;
 	}
 	str[i] = '\0';
 	return (str);
@@ -59,11 +71,11 @@ static char	*ft_words(char *s, char c)
 
 char	**ft_split_ps(char *s, char c)
 {
-	int	i;
-    int nwords;
+	int		i;
+	int		nwords;
 	char	**str;
 
-    nwords = ft_nwords(s, c);
+	nwords = ft_nwords(s, c);
 	str = (char **)malloc(sizeof(char *) * (ft_nwords(s, c) + 1));
 	if (!str || !s)
 		return (NULL);
@@ -71,14 +83,14 @@ char	**ft_split_ps(char *s, char c)
 	while (nwords-- >= 0)
 	{
 		if (i == 0)
-        {
-            str[i] = malloc(sizeof(char));
-            if(!str)
-                return(NULL);
-            str[i++][0] = '\0';
-            continue;
-        }
-        str[i++] = ft_words(s ,c);
+		{
+			str[i] = malloc(sizeof(char));
+			if (!str)
+				return (NULL);
+			str[i++][0] = '\0';
+			continue ;
+		}
+		str[i++] = ft_words(s, c);
 	}
 	str[i] = 0;
 	return (str);

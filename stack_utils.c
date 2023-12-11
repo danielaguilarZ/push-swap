@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/11 17:34:01 by daguilar          #+#    #+#             */
+/*   Updated: 2023/12/11 17:34:02 by daguilar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack	*ft_stack_last(t_stack *stack)
@@ -22,29 +34,28 @@ int	ft_stack_size(t_stack *stack)
 	return (i);
 }
 
-bool ft_stack_sorted(t_stack *stack)
+bool	ft_stack_sorted(t_stack *stack)
 {
-	if(!stack)
-		return(1);
-	while(stack->next)
+	if (!stack)
+		return (1);
+	while (stack->next)
 	{
-		if(stack->nb > stack->next->nb)
-			return(false);
+		if (stack->nb > stack->next->nb)
+			return (false);
 		stack = stack->next;
 	}
-
-	return(true);
+	return (true);
 }
 
 t_stack	*ft_stack_min(t_stack *stack)
 {
 	long	min;
-	t_stack *min_node;
+	t_stack	*min_node;
 
 	if (!stack)
 		return (NULL);
 	min = LONG_MAX;
-	while(stack)
+	while (stack)
 	{
 		if (stack->nb < min)
 		{
@@ -59,12 +70,12 @@ t_stack	*ft_stack_min(t_stack *stack)
 t_stack	*ft_stack_max(t_stack *stack)
 {
 	long	max;
-	t_stack *max_node;
+	t_stack	*max_node;
 
 	if (!stack)
 		return (NULL);
 	max = LONG_MIN;
-	while(stack)
+	while (stack)
 	{
 		if (stack->nb > max)
 		{

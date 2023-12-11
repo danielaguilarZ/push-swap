@@ -6,33 +6,32 @@
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:16:07 by daguilar          #+#    #+#             */
-/*   Updated: 2023/11/29 18:25:52 by daguilar         ###   ########.fr       */
+/*   Updated: 2023/12/11 17:44:41 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_stack *A;
-    t_stack *B;
+	t_stack	*a;
+	t_stack	*b;
 
-    A = NULL;
-    B = NULL;
-    if (argc == 1 || (argc == 2 && !argv[1][0]))
-        return (1);
-    else if (argc == 2)
-        argv = ft_split_ps(argv[1], ' ');
-    ft_create_stack_a(&A, argv + 1);
-    if (ft_stack_sorted(A) == false)
-    {
-        if (ft_stack_size(A) == 2)
-            ft_sa(&A, true);
-        else if (ft_stack_size(A) == 3)
-            ft_sort_three(&A);
-        else
-            ft_sort_all(&A, &B);     
-    }
-
-    ft_free_stack(&A);
+	a = NULL;
+	b = NULL;
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
+		return (1);
+	else if (argc == 2)
+		argv = ft_split_ps(argv[1], ' ');
+	ft_create_stack_a(&a, argv + 1);
+	if (ft_stack_sorted(a) == false)
+	{
+		if (ft_stack_size(a) == 2)
+			ft_sa(&a, true);
+		else if (ft_stack_size(a) == 3)
+			ft_sort_three(&a);
+		else
+			ft_sort_all(&a, &b);
+	}
+	ft_free_stack(&a);
 }
