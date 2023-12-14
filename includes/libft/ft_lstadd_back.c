@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_utils.c                                      :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 17:34:43 by daguilar          #+#    #+#             */
-/*   Updated: 2023/12/14 19:48:35 by daguilar         ###   ########.fr       */
+/*   Created: 2023/09/29 15:06:27 by daguilar          #+#    #+#             */
+/*   Updated: 2023/10/02 17:40:42 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-long	ft_atoi_ps(const char *s)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	long	result;
-	int		sign;
+	t_list	*last;
 
-	result = 0;
-	sign = 1;
-	while (*s == ' ' || *s == '\t' || *s == '\n' || *s == '\r' || *s == '\f'
-		|| *s == '\v')
-		s++;
-	if (*s == '-' || *s == '+')
+	if (*lst == NULL)
+		*lst = new;
+	else
 	{
-		if (*s == '-')
-			sign = -1;
-		s++;
+		last = ft_lstlast(*lst);
+		last->next = new;
 	}
-	while (ft_isdigit(*s))
-		result = result * 10 + (*s++ - '0');
-	return (result * sign);
 }

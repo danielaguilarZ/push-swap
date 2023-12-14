@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_utils.c                                      :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 17:34:43 by daguilar          #+#    #+#             */
-/*   Updated: 2023/12/14 19:48:35 by daguilar         ###   ########.fr       */
+/*   Created: 2023/09/15 14:40:54 by daguilar          #+#    #+#             */
+/*   Updated: 2023/10/02 13:28:10 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-long	ft_atoi_ps(const char *s)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	long	result;
-	int		sign;
+	size_t	i;
 
-	result = 0;
-	sign = 1;
-	while (*s == ' ' || *s == '\t' || *s == '\n' || *s == '\r' || *s == '\f'
-		|| *s == '\v')
-		s++;
-	if (*s == '-' || *s == '+')
+	i = 0;
+	if (size == 0)
+		return (ft_strlen(src));
+	while ((i < size - 1) && src[i])
 	{
-		if (*s == '-')
-			sign = -1;
-		s++;
+		dst[i] = src[i];
+		i++;
 	}
-	while (ft_isdigit(*s))
-		result = result * 10 + (*s++ - '0');
-	return (result * sign);
+	dst[i] = '\0';
+	return (ft_strlen(src));
 }

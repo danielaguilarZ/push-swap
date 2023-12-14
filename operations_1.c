@@ -6,7 +6,7 @@
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:34:29 by daguilar          #+#    #+#             */
-/*   Updated: 2023/12/11 17:35:38 by daguilar         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:35:08 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	ft_swap(t_stack **stack)
 	int		temp;
 	t_stack	*first;
 	t_stack	*second;
+
+	first = NULL;
+	second = NULL;
 
 	if (*stack && (*stack)->next)
 	{

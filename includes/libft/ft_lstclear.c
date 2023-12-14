@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_utils.c                                      :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 17:34:43 by daguilar          #+#    #+#             */
-/*   Updated: 2023/12/14 19:48:35 by daguilar         ###   ########.fr       */
+/*   Created: 2023/09/29 17:49:06 by daguilar          #+#    #+#             */
+/*   Updated: 2023/09/30 17:33:25 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-long	ft_atoi_ps(const char *s)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	long	result;
-	int		sign;
+	t_list	*current;
+	t_list	*next;
 
-	result = 0;
-	sign = 1;
-	while (*s == ' ' || *s == '\t' || *s == '\n' || *s == '\r' || *s == '\f'
-		|| *s == '\v')
-		s++;
-	if (*s == '-' || *s == '+')
+	current = *lst;
+	while (current != NULL)
 	{
-		if (*s == '-')
-			sign = -1;
-		s++;
+		next = current->next;
+		(*del)(current->content);
+		free(current);
+		current = next;
 	}
-	while (ft_isdigit(*s))
-		result = result * 10 + (*s++ - '0');
-	return (result * sign);
+	*lst = NULL;
 }

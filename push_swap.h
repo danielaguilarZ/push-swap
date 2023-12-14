@@ -6,13 +6,14 @@
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:16:10 by daguilar          #+#    #+#             */
-/*   Updated: 2023/12/11 17:38:10 by daguilar         ###   ########.fr       */
+/*   Updated: 2023/12/14 19:55:55 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "includes/libft/libft.h"
 # include <limits.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -57,15 +58,12 @@ void				ft_rr_both(t_stack **A, t_stack **B, t_stack *optimal_node);
 void				ft_rerverse_rotation(t_stack **stack);
 void				ft_rra(t_stack **A, bool print);
 void				ft_rrb(t_stack **B, bool print);
-void				f_rrr(t_stack **A, t_stack **B, bool print);
+void				ft_rrr(t_stack **A, t_stack **B, bool print);
 void				ft_rrr_both(t_stack **A, t_stack **B,
 						t_stack *optimal_node);
 
 // Libft utils
 
-size_t				ft_strlen(char *str);
-char				*ft_strchr(char *s, int c);
-int					ft_isdigit(int c);
 long				ft_atoi_ps(const char *s);
 char				**ft_split_ps(char *s, char c);
 
@@ -104,5 +102,7 @@ void				ft_free_errors(t_stack **A);
 
 void				ft_sort_three(t_stack **A);
 void				ft_sort_all(t_stack **A, t_stack **B);
+
+void	ft_operation_checker(t_stack *a, t_stack *b, char *operation);
 
 #endif

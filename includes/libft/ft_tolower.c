@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_utils.c                                      :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 17:34:43 by daguilar          #+#    #+#             */
-/*   Updated: 2023/12/14 19:48:35 by daguilar         ###   ########.fr       */
+/*   Created: 2023/09/15 18:24:40 by daguilar          #+#    #+#             */
+/*   Updated: 2023/10/01 09:47:40 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdio.h>
 
-long	ft_atoi_ps(const char *s)
+int	ft_tolower(int c)
 {
-	long	result;
-	int		sign;
-
-	result = 0;
-	sign = 1;
-	while (*s == ' ' || *s == '\t' || *s == '\n' || *s == '\r' || *s == '\f'
-		|| *s == '\v')
-		s++;
-	if (*s == '-' || *s == '+')
-	{
-		if (*s == '-')
-			sign = -1;
-		s++;
-	}
-	while (ft_isdigit(*s))
-		result = result * 10 + (*s++ - '0');
-	return (result * sign);
+	if (c >= 65 && c <= 90)
+		c += 32;
+	return (c);
 }

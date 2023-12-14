@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_utils.c                                      :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 17:34:43 by daguilar          #+#    #+#             */
-/*   Updated: 2023/12/14 19:48:35 by daguilar         ###   ########.fr       */
+/*   Created: 2023/09/12 19:16:10 by daguilar          #+#    #+#             */
+/*   Updated: 2023/10/01 09:44:46 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+#include <string.h>
 
-long	ft_atoi_ps(const char *s)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	long	result;
-	int		sign;
+	size_t			i;
+	unsigned char	*strdst;
+	unsigned char	*strsrc;
 
-	result = 0;
-	sign = 1;
-	while (*s == ' ' || *s == '\t' || *s == '\n' || *s == '\r' || *s == '\f'
-		|| *s == '\v')
-		s++;
-	if (*s == '-' || *s == '+')
+	i = 0;
+	strdst = (unsigned char *)dest;
+	strsrc = (unsigned char *)src;
+	if (!strdst && !strsrc)
+		return (0);
+	while (i < n)
 	{
-		if (*s == '-')
-			sign = -1;
-		s++;
+		strdst[i] = strsrc[i];
+		i++;
 	}
-	while (ft_isdigit(*s))
-		result = result * 10 + (*s++ - '0');
-	return (result * sign);
+	return (strdst);
 }

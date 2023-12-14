@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_utils.c                                      :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 17:34:43 by daguilar          #+#    #+#             */
-/*   Updated: 2023/12/14 19:48:35 by daguilar         ###   ########.fr       */
+/*   Created: 2023/09/29 18:28:54 by daguilar          #+#    #+#             */
+/*   Updated: 2023/10/02 13:30:48 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-long	ft_atoi_ps(const char *s)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	long	result;
-	int		sign;
+	t_list	*noodle;
+	t_list	*new;
 
-	result = 0;
-	sign = 1;
-	while (*s == ' ' || *s == '\t' || *s == '\n' || *s == '\r' || *s == '\f'
-		|| *s == '\v')
-		s++;
-	if (*s == '-' || *s == '+')
+	new = NULL;
+	if (!lst)
+		return (NULL);
+	while (lst)
 	{
-		if (*s == '-')
-			sign = -1;
-		s++;
+		noodle = ft_lstnew(0);
+		if (!noodle)
+		{
+			ft_lstclear(&new, del);
+			return (0);
+		}
+		noodle->content = f(lst->content);
+		ft_lstadd_back(&new, noodle);
+		lst = lst->next;
 	}
-	while (ft_isdigit(*s))
-		result = result * 10 + (*s++ - '0');
-	return (result * sign);
+	return (new);
 }

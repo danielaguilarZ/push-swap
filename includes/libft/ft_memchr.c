@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_utils.c                                      :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 17:34:43 by daguilar          #+#    #+#             */
-/*   Updated: 2023/12/14 19:48:35 by daguilar         ###   ########.fr       */
+/*   Created: 2023/09/16 13:46:05 by daguilar          #+#    #+#             */
+/*   Updated: 2023/10/02 13:28:01 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdio.h>
+#include <string.h>
 
-long	ft_atoi_ps(const char *s)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	long	result;
-	int		sign;
+	size_t	i;
+	char	*str;
+	char	ch;
 
-	result = 0;
-	sign = 1;
-	while (*s == ' ' || *s == '\t' || *s == '\n' || *s == '\r' || *s == '\f'
-		|| *s == '\v')
-		s++;
-	if (*s == '-' || *s == '+')
+	i = 0;
+	str = (char *)s;
+	ch = (char)c;
+	while (i < n)
 	{
-		if (*s == '-')
-			sign = -1;
-		s++;
+		if (str[i] == ch)
+		{
+			return (&str[i]);
+		}
+		i++;
 	}
-	while (ft_isdigit(*s))
-		result = result * 10 + (*s++ - '0');
-	return (result * sign);
+	return (NULL);
 }

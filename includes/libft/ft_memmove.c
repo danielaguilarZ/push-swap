@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_utils.c                                      :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 17:34:43 by daguilar          #+#    #+#             */
-/*   Updated: 2023/12/14 19:48:35 by daguilar         ###   ########.fr       */
+/*   Created: 2023/09/15 14:31:14 by daguilar          #+#    #+#             */
+/*   Updated: 2023/09/30 17:32:06 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <string.h>
 
-long	ft_atoi_ps(const char *s)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	long	result;
-	int		sign;
+	size_t			i;
+	unsigned char	*strdst;
+	unsigned char	*strsrc;
 
-	result = 0;
-	sign = 1;
-	while (*s == ' ' || *s == '\t' || *s == '\n' || *s == '\r' || *s == '\f'
-		|| *s == '\v')
-		s++;
-	if (*s == '-' || *s == '+')
+	i = 0;
+	strdst = (unsigned char *)dest;
+	strsrc = (unsigned char *)src;
+	if (!strdst && !strsrc)
+		return (0);
+	if (strdst > strsrc)
 	{
-		if (*s == '-')
-			sign = -1;
-		s++;
+		while (len--)
+			strdst[len] = strsrc[len];
 	}
-	while (ft_isdigit(*s))
-		result = result * 10 + (*s++ - '0');
-	return (result * sign);
+	else
+	{
+		while (i < len)
+		{
+			strdst[i] = strsrc[i];
+			i++;
+		}
+	}
+	return (strdst);
 }
