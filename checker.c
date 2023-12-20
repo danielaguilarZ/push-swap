@@ -38,6 +38,7 @@ void	ft_operation_checker(t_stack *a, t_stack *b, char *operation)
 		ft_pb(&a, &b, false);
 }
 
+
 int	main(int argc, char **argv)
 {
 	t_stack *a;
@@ -55,12 +56,14 @@ int	main(int argc, char **argv)
 	{
 		if (ft_strncmp(operation, "Error\n", 7) == 0)
 			printf("Error");
-		ft_operation_checker(a, b, operation);
+		else
+			ft_operation_checker(a, b, operation);
 	}
 	if (ft_stack_sorted(a) == true)
 		printf("OK");
-	else
+	else if (ft_stack_sorted(a) == false)
 		printf("KO");
 
 	ft_free_stack(&a);
+	ft_free_stack(&b);
 }

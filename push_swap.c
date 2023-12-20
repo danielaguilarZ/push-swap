@@ -33,5 +33,6 @@ int	main(int argc, char **argv)
 		else
 			ft_sort_all(&a, &b);
 	}
+	ft_sa(&a , true);
 	ft_free_stack(&a);
 }

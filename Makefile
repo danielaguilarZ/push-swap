@@ -16,7 +16,9 @@ SRCS			=	errors.c libft_utils.c new_stack.c node_utils.c nodeA.c nodeB.c operati
 				operations_2.c operations_3.c operations_4.c push_swap.c sort_stack.c sort_three.c \
 				split_ps.c stack_utils.c
 
-BONUS_SRCS		= checker.c operations_1.c operations_2.c operations_3.c operations_4.c new_stack.c
+BONUS_SRCS		= checker.c errors.c libft_utils.c new_stack.c node_utils.c nodeA.c nodeB.c operations_1.c \
+				operations_2.c operations_3.c operations_4.c sort_stack.c sort_three.c \
+				split_ps.c stack_utils.c
 
 OBJS			= $(SRCS:.c=.o)
 
@@ -37,8 +39,8 @@ bonus:			$(BONUS_NAME)
 $(NAME):		$(LIBFT_PATH)/libft.a $(OBJS)
 			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_PATH)/libft.a
 
-$(BONUS_NAME):	$(LIBFT_PATH)/libft.a $(OBJS) $(OBJS_BONUS)
-			$(CC) $(CFLAGS) -o $(BONUS_NAME) $(OBJS) $(LIBFT_PATH)/libft.a
+$(BONUS_NAME):	$(LIBFT_PATH)/libft.a $(OBJS_BONUS)
+			$(CC) $(CFLAGS) -o $(BONUS_NAME) $(OBJS_BONUS) $(LIBFT_PATH)/libft.a
 
 $(LIBFT_PATH)/libft.a:
 	@make -C $(LIBFT_PATH)

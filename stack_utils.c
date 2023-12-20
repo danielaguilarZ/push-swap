@@ -38,7 +38,7 @@ bool	ft_stack_sorted(t_stack *stack)
 {
 	if (!stack)
 		return (1);
-	while (stack->next)
+	while (stack && stack->next)
 	{
 		if (stack->nb > stack->next->nb)
 			return (false);
