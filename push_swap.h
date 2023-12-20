@@ -6,7 +6,7 @@
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:16:10 by daguilar          #+#    #+#             */
-/*   Updated: 2023/12/14 19:55:55 by daguilar         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:27:40 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int					ft_stack_size(t_stack *stack);
 bool				ft_stack_sorted(t_stack *stack);
 
 void				ft_create_stack_a(t_stack **A, char **argv);
-void				ft_print_stacks(t_stack *A, t_stack *B);
 
 // Node utils
 
@@ -103,6 +102,6 @@ void				ft_free_errors(t_stack **A);
 void				ft_sort_three(t_stack **A);
 void				ft_sort_all(t_stack **A, t_stack **B);
 
-void	ft_operation_checker(t_stack *a, t_stack *b, char *operation);
+bool	ft_operation_checker(t_stack **a, t_stack **b, char *operation);
 
 #endif

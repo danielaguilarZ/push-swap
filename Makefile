@@ -6,11 +6,11 @@
 #    By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:54:29 by daguilar          #+#    #+#              #
-#    Updated: 2023/12/14 20:17:13 by daguilar         ###   ########.fr        #
+#    Updated: 2023/12/20 17:33:55 by daguilar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT_PATH 		= includes/libft
+LIBFT_PATH 		= include/libft
 
 SRCS			=	errors.c libft_utils.c new_stack.c node_utils.c nodeA.c nodeB.c operations_1.c \
 				operations_2.c operations_3.c operations_4.c push_swap.c sort_stack.c sort_three.c \

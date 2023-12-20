@@ -6,7 +6,7 @@
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:16:07 by daguilar          #+#    #+#             */
-/*   Updated: 2023/12/11 17:44:41 by daguilar         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:23:43 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ int	main(int argc, char **argv)
 		else
 			ft_sort_all(&a, &b);
 	}
-	ft_sa(&a , true);
 	ft_free_stack(&a);
 }

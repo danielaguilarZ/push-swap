@@ -6,7 +6,7 @@
 /*   By: daguilar <daguilar@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:34:29 by daguilar          #+#    #+#             */
-/*   Updated: 2023/12/14 16:35:08 by daguilar         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:21:59 by daguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,14 @@
 
 void	ft_swap(t_stack **stack)
 {
-	int		temp;
-	t_stack	*first;
-	t_stack	*second;
+	t_stack	*tmp;
 
-	first = NULL;
-	second = NULL;
-
-	if (*stack && (*stack)->next)
-	{
-		first = *stack;
-		second = (*stack)->next;
-	}
-	temp = first->nb;
-	first->nb = second->nb;
-	second->nb = temp;
+	if (!*stack || !(*stack)->next)
+		return ;
+	tmp = *stack;
+	*stack = (*stack)->next;
+	tmp->next = (*stack)->next;
+	(*stack)->next = tmp;
 }
 
 void	ft_sa(t_stack **A, bool print)
