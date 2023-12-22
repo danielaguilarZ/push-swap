@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+// Find the last node of the stack
+
 t_stack	*ft_stack_last(t_stack *stack)
 {
 	if (!stack)
@@ -21,18 +23,22 @@ t_stack	*ft_stack_last(t_stack *stack)
 	return (stack);
 }
 
+// Return the size of the stack
+
 int	ft_stack_size(t_stack *stack)
 {
 	int	i;
 
 	i = 0;
-	while (stack != NULL)
+	while (!stack)
 	{
 		stack = stack->next;
 		i++;
 	}
 	return (i);
 }
+
+// Check if the stack is sorted
 
 bool	ft_stack_sorted(t_stack *stack)
 {
@@ -46,6 +52,8 @@ bool	ft_stack_sorted(t_stack *stack)
 	}
 	return (true);
 }
+
+// Find the minimum value of the stack
 
 t_stack	*ft_stack_min(t_stack *stack)
 {
@@ -66,6 +74,8 @@ t_stack	*ft_stack_min(t_stack *stack)
 	}
 	return (min_node);
 }
+
+// Find the maximum value of the stack
 
 t_stack	*ft_stack_max(t_stack *stack)
 {

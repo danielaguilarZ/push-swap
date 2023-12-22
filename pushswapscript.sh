@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CHECKER_NAME="./checker_MAC"
+CHECKER_NAME="./checker_linux"
 
 ARG_EMPTY=""
 
@@ -51,9 +51,9 @@ echo "\033[0;34mWith an empty argument:\033[0m"
 RESULT=$(./push_swap $ARG_EMPTY | $CHECKER_NAME $ARG_EMPTY)
 if [ "$RESULT" = "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
 
 echo
@@ -63,9 +63,9 @@ echo "\033[0;34mWith an argument that is not an int (should give \033[0m\033[1;3
 RESULT=$(./push_swap $ARG_WRONG1 | $CHECKER_NAME $ARG_WRONG1 2>&1)
 if [ "$RESULT" = "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
 
 echo
@@ -75,91 +75,90 @@ echo "\033[0;34mWith an argument that is bigger than int (should give \033[0m\03
 RESULT=$(./push_swap $ARG_WRONG3 | $CHECKER_NAME $ARG_WRONG3 2>&1)
 if [ "$RESULT" = "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
 
 echo
-echo "\033[0;34mWith an argument that has a duplicate (should give \033[0m\033[1;31mError\033[0m\033[0;34m):\033[0m"
+echo -e "\033[0;34mWith an argument that has a duplicate (should give \033[0m\033[1;31mError\033[0m\033[0;34m):\033[0m"
 
 ./push_swap $ARG_WRONG2
 RESULT=$(./push_swap $ARG_WRONG2 | $CHECKER_NAME $ARG_WRONG2 2>&1)
 if [ "$RESULT" = "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
 
-echo
-echo "\033[0;34mWith ordered arguments:\033[0m"
+echo -e "\033[0;34mWith ordered arguments:\033[0m"
 
 ARG_ORD="1 2 3 4 5"
-./push_swap $ARG_ORD | wc -l | bc
+./push_swap $ARG_ORD | wc -l
 RESULT=$(./push_swap $ARG_ORD | $CHECKER_NAME $ARG_ORD 2>&1)
 if [ "$RESULT" = "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
 
 ARG_ORD="-350 -261 -98 0 45 1402 2000"
-./push_swap $ARG_ORD | wc -l | bc
+./push_swap $ARG_ORD | wc -l
 RESULT=$(./push_swap $ARG_ORD | $CHECKER_NAME $ARG_ORD 2>&1)
 if [ "$RESULT" = "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
 
 ARG_ORD="1 3 4 7 8"
-./push_swap $ARG_ORD | wc -l | bc
+./push_swap $ARG_ORD | wc -l
 RESULT=$(./push_swap $ARG_ORD | $CHECKER_NAME $ARG_ORD 2>&1)
 if [ "$RESULT" = "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
 
 echo
-echo "\033[0;34mWith 1 argument:\033[0m"
+echo -e "\033[0;34mWith 1 argument:\033[0m"
 
-./push_swap 42 | wc -l | bc
+./push_swap 42 | wc -l
 RESULT=$(./push_swap 42 | $CHECKER_NAME 42 2>&1)
 if [ "$RESULT" = "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
 
 echo
-echo "\033[0;34mWith 2 arguments:\033[0m"
+echo -e "\033[0;34mWith 2 arguments:\033[0m"
 
-./push_swap 2 14 | wc -l | bc
+./push_swap 2 14 | wc -l
 RESULT=$(./push_swap 2 14 | $CHECKER_NAME 2 14 2>&1)
 if [ "$RESULT" = "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
 
-./push_swap 14 2 | wc -l | bc
+./push_swap 14 2 | wc -l
 RESULT=$(./push_swap 14 2 | $CHECKER_NAME 14 2 2>&1)
 if [ "$RESULT" = "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
 
 echo
-echo "\033[0;34mWith 3 arguments:\033[0m"
+echo -e "\033[0;34mWith 3 arguments:\033[0m"
 
 for i in {1..3}
 do
@@ -171,13 +170,13 @@ do
 			do
 				if [ $k != $j ] && [ $k != $i ]
 				then
-					./push_swap $i $j $k | wc -l | bc
+					./push_swap $i $j $k | wc -l
 					RESULT=$(./push_swap $i $j $k | $CHECKER_NAME $i $j $k 2>&1)
 					if [ $RESULT == "OK" ]
 					then
-						echo "\033[1;32mOK\033[0m"
+						echo -e "\033[1;32mOK\033[0m"
 					else
-						echo "\033[1;31m$RESULT\033[0m"
+						echo -e "\033[1;31m$RESULT\033[0m"
 					fi
 				fi
 			done
@@ -186,7 +185,7 @@ do
 done
 
 echo
-echo "\033[0;34mWith 5 arguments:\033[0m"
+echo -e "\033[0;34mWith 5 arguments:\033[0m"
 
 for m in {1..5}
 do
@@ -206,13 +205,13 @@ do
 							do
 								if [ $k != $m ] && [ $k != $n ] && [ $k != $j ] && [ $k != $i ]
 								then
-									./push_swap $m $n $i $j $k | wc -l | bc
+									./push_swap $m $n $i $j $k | wc -l
 									RESULT=$(./push_swap $m $n $i $j $k | $CHECKER_NAME $m $n $i $j $k 2>&1)
 									if [ $RESULT == "OK" ]
 									then
-										echo "\033[1;32mOK\033[0m"
+										echo -e "\033[1;32mOK\033[0m"
 									else
-										echo "\033[1;31m$RESULT\033[0m"
+										echo -e "\033[1;31m$RESULT\033[0m"
 									fi
 								fi
 							done
@@ -225,149 +224,148 @@ do
 done
 
 echo
-echo "\033[0;34mWith 100 valid arguments:\033[0m"
+echo -e "\033[0;34mWith 100 valid arguments:\033[0m"
 
-./push_swap $ARG1_100 | wc -l | bc
+./push_swap $ARG1_100 | wc -l
 RESULT=$(./push_swap $ARG1_100 | $CHECKER_NAME $ARG1_100 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARG2_100 | wc -l | bc
+./push_swap $ARG2_100 | wc -l
 RESULT=$(./push_swap $ARG2_100 | $CHECKER_NAME $ARG2_100 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARG3_100 | wc -l | bc
+./push_swap $ARG3_100 | wc -l
 RESULT=$(./push_swap $ARG3_100 | $CHECKER_NAME $ARG3_100 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARG4_100 | wc -l | bc
+./push_swap $ARG4_100 | wc -l
 RESULT=$(./push_swap $ARG4_100 | $CHECKER_NAME $ARG4_100 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARG5_100 | wc -l | bc
+./push_swap $ARG5_100 | wc -l
 RESULT=$(./push_swap $ARG5_100 | $CHECKER_NAME $ARG5_100 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARG6_100 | wc -l | bc
+./push_swap $ARG6_100 | wc -l
 RESULT=$(./push_swap $ARG6_100 | $CHECKER_NAME $ARG6_100 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARG7_100 | wc -l | bc
+./push_swap $ARG7_100 | wc -l
 RESULT=$(./push_swap $ARG7_100 | $CHECKER_NAME $ARG7_100 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARG8_100 | wc -l | bc
+./push_swap $ARG8_100 | wc -l
 RESULT=$(./push_swap $ARG8_100 | $CHECKER_NAME $ARG8_100 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARG9_100 | wc -l | bc
+./push_swap $ARG9_100 | wc -l
 RESULT=$(./push_swap $ARG9_100 | $CHECKER_NAME $ARG9_100 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARG10_100 | wc -l | bc
+./push_swap $ARG10_100 | wc -l
 RESULT=$(./push_swap $ARG10_100 | $CHECKER_NAME $ARG10_100 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
 
 echo
-echo "\033[0;34mWith 500 valid arguments:\033[0m"
+echo -e "\033[0;34mWith 500 valid arguments:\033[0m"
 
-./push_swap $ARG1_500 | wc -l | bc
+./push_swap $ARG1_500 | wc -l
 RESULT=$(./push_swap $ARG1_500 | $CHECKER_NAME $ARG1_500 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARG2_500 | wc -l | bc
+./push_swap $ARG2_500 | wc -l
 RESULT=$(./push_swap $ARG2_500 | $CHECKER_NAME $ARG2_500 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARG3_500 | wc -l | bc
+./push_swap $ARG3_500 | wc -l
 RESULT=$(./push_swap $ARG3_500 | $CHECKER_NAME $ARG3_500 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARG4_500 | wc -l | bc
+./push_swap $ARG4_500 | wc -l
 RESULT=$(./push_swap $ARG4_500 | $CHECKER_NAME $ARG4_500 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARG5_500 | wc -l | bc
+./push_swap $ARG5_500 | wc -l
 RESULT=$(./push_swap $ARG5_500 | $CHECKER_NAME $ARG5_500 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
 
-echo
-echo "\033[0;34mWith 100/500 valid arguments of which some are negative:\033[0m"
+echo -e "\033[0;34mWith 100/500 valid arguments of which some are negative:\033[0m"
 
-./push_swap $ARGMIN_100 | wc -l | bc
+./push_swap $ARGMIN_100 | wc -l
 RESULT=$(./push_swap $ARGMIN_100 | $CHECKER_NAME $ARGMIN_100 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
-./push_swap $ARGMIN_500 | wc -l | bc
+./push_swap $ARGMIN_500 | wc -l
 RESULT=$(./push_swap $ARGMIN_500 | $CHECKER_NAME $ARGMIN_500 2>&1)
 if [ $RESULT == "OK" ]
 then
-	echo "\033[1;32mOK\033[0m"
+	echo -e "\033[1;32mOK\033[0m"
 else
-	echo "\033[1;31m$RESULT\033[0m"
+	echo -e "\033[1;31m$RESULT\033[0m"
 fi
